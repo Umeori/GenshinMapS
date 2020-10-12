@@ -1,37 +1,57 @@
-## Welcome to GitHub Pages
-
-You can use the [editor on GitHub](https://github.com/Umeori/GenshinMapS/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Umeori/GenshinMapS/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<title>원신지도</title>
+	<meta charset="utf-8">
+	<script>
+		var _hmt = _hmt || [];
+		(function () {
+			var hm = document.createElement("script");
+			hm.src = "https://hm.baidu.com/hm.js?cd4f7eed0a6e62d83b92c5dfb9f1a20f";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+</head>
+<body>
+<form >
+<table align="center" border="1">
+<tr><TD align="right" width=120 height=60>파일내용표시</TD><td><textarea id="markerLogs" style=" height:100%;"
+></textarea></td></tr>
+<tr><td align="center" height=15 colspan="2">		<button id = "submitMarker">제출</button><button id = "enterIndex" >상자 합쳐 보기</button><button id = "enterIndex2" >상자 합쳐 보지않기</button></td></tr>
+</table>
+</form>
+</body>
+	<script src="./singleMap/js/jquery-3.5.1.min.js"></script>
+	<script>
+		$("#submitMarker").click(function() {
+			try {
+        for (var j = 0; j < 50; j++) {
+          for (var i = 0; i < 1200; i++) {
+            var key = j + "_" + i;
+            localStorage.setItem(key, "");
+          }
+        }
+        var markerLogArr = JSON.parse($("#markerLogs").val());
+        for(var i = 0 ; i<markerLogArr.length; i++) {
+          localStorage.setItem(markerLogArr[i], "1");
+        }
+        alert("적용성공!");
+      }
+      catch (e) {
+        alert("적용 중 오류가 발생하였습니다.\n입력된 json코드가 올바른지 확인해주세요.\njson 코드의 형식은 "+'["숫자_숫자","숫자_숫자",...]의 형태여야 합니다.');
+      }
+      
+		})
+		$("#enterIndex").click(function() {
+		    window.event.returnValue = false;
+			window.location.href = './singleMap/index.html';
+		})
+		$("#enterIndex2").click(function() {
+		    window.event.returnValue = false;
+			window.location.href = './singleMap/index_old.html';
+		})
+	</script>
+</body>
+</html>
